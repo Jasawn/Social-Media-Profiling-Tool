@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <title>GodEyes</title>
+        <style>
+            .centerButton
+            {
+                display: flex;
+                justify-content: center; 
+            }
+            .proceedButton
+            {
+                background-color: #808080;
+                border: none;
+                border-radius: 15px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 10px 32px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+            .proceedButton:hover
+            {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align:center">Welcome to GodEyes</h1>
+        <div class="centerButton">
+            <a class="proceedButton" href="{{url_for('homePage')}}">Click here to continue...</a>
+        </div>
+    </body>
+    
+</html>

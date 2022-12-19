@@ -1,0 +1,354 @@
+<!doctype html>
+<html>
+    <head>
+        <title>GodEyes</title>
+        <style>
+            .headerCenter
+            {
+                text-align:center;
+            }
+            .info
+            {
+                width: 100%;
+                height: auto;
+                float: left;
+                margin-bottom:80px;
+            }
+            #fbook
+            {
+                border-style:groove;
+                height: auto;
+            }
+            #insta
+            {
+                border-style:groove;
+                height: auto;
+            }
+            #twitter
+            {
+                border-style:groove;
+                height: auto;
+            }
+            #linkedin
+            {
+                border-style:groove;
+                height: auto;
+
+            }
+            .button
+            {
+                display: flex;
+                justify-content: center;
+                background-color: #808080;
+                border: none;
+                border-radius: 15px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 10px 32px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+            .button:Hover
+            {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            .search-table-outer
+            {
+                overflow-x: scroll;
+                height: 500px;
+            }
+            .search-table-multipleimg
+            {
+                overflow-x: scroll;
+                height: 470px;
+            }
+            th, td
+            {
+                min-width: 300px;
+            }
+            table
+            {
+                table-layout: fixed;
+                margin: 0px auto 0px auto;
+                height:100px;
+            }
+            table, th, td
+            {
+                text-align: center;
+                border-collapse:collapse;
+                border:1px solid #777;
+            }
+            th{
+                padding:20px 7px;
+                font-size:15px;
+                color:#444;
+                background:#66C2E0;
+            }
+            td
+            {
+                padding:5px 10px;
+                height:35px;
+            }
+            tr:nth-child(even)
+            {
+                background-color: #f2f2f2
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class='headerCenter'>What God has found for {{ data['Name'] }}</h1>
+        <hr>
+        <div class="info">
+            <label for="facebookres">Facebook Result:</label>
+            {% if data['Facebook'] %}
+            <div id="fbook">
+                <div class="search-table-outer wrapper" style="overflow-x:auto;">
+                    <table>
+                        <tr>
+                            <th>Profile Link</th>
+                            <th>Name</th>
+                            <th>Profile Pic Link</th>
+                            <th>Bio</th>
+                            <th>Gender</th>
+                            <th>Companies</th>
+                            <th>Position Held</th>
+                            <th>Duration (Work)</th>
+                            <th>Country (Work)</th>
+                            <th>Universities</th>
+                            <th>Degrees</th>
+                            <th>Duration (University)</th>
+                            <th>High Schools</th>
+                            <th>Duration (High School)</th>
+                            <th>Current Location</th>
+                            <th>Home Town</th>
+                            <th>Residential Address</th>
+                            <th>Phone Number</th>
+                            <th>Email Address</th>
+                            <th>Websites</th>
+                            <th>Instagram</th>
+                            <th>Twitter</th>
+                            <th>LinkedIn</th>
+                            <th>Birth Date</th>
+                            <th>Birth Year</th>
+                            <th>Languages</th>
+                            <th>Religion</th>
+                            <th>Politics</th>
+                            <th>Percentage Match</th>
+                        </tr>
+                        {% for key,value in data['Facebook'].items() %}
+                        <tr>
+                            <td>{{key}}</td>
+                            {% for individualItems in value %}
+                            {% if individualItems is not none and "jpg" in individualItems %}
+                            <td>
+                                <img src="static/image/facebook/{{ individualItems }}"  width="240" height="180"/>
+                            </td>
+                            {% else %}
+                            <td>{% autoescape false %}{{ individualItems }}{% endautoescape %}</td>
+                            {% endif %}
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+            {% else %}
+            <div id="fbook">No results found :(</div>
+            {% endif %}
+        </div>
+        <div class="info">
+            <label for="instagramres">Instagram Result:</label>
+            {% if data['Instagram'] %}
+            <div id="insta">
+                <div class="search-table-outer wrapper" style="overflow-x:auto;">
+                    <table>
+                        <tr>
+                            <th>Profile Link</th>
+                            <th>Name</th>
+                            <th>Profile Pic Link</th>
+                            <th>Job</th>
+                            <th>Biography</th>
+                            <th>Additional Link</th>
+                            <th>Recent Photos</th>
+                            <th>Percentage Match</th>
+                        </tr>
+                        {% for key,value in data['Instagram'].items() %}
+                        <tr>
+                            <td>{{key}}</td>
+                            {% for individualItems in value %}
+                            {% if individualItems is iterable and (individualItems is not string and individualItems is not mapping) %}
+                            <td>
+                                <div class="search-table-multipleimg" style="overflow-x:auto;">
+                                    {% for items in individualItems %}
+                                    {% if loop.index is divisibleby 2 %}
+                                    <br>
+                                    {% autoescape false %}{{ items }}{% endautoescape %}
+                                    <br>
+                                    {% else %}
+                                    <img src="static/image/instagram/{{ items }}"  width="240" height="180"/>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </td>
+                            {% elif individualItems is not none and "jpg" in individualItems %}
+                            <td>
+                                <img src="static/image/instagram/{{ individualItems }}"  width="240" height="180"/>
+                            </td>
+                            {% else %}
+                            <td>{% autoescape false %}{{ individualItems }}{% endautoescape %}</td>
+                            {% endif %}
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            {% else %}
+            <div id="linkedin">No results found :(</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="info">
+        <label for="twitterres">Twitter Result:</label>
+        {% if data['Twitter'] %}
+        <div id="twitter">
+            <div class="search-table-outer wrapper" style="overflow-x:auto;">
+                <table>
+                    <tr>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Biography</th>
+                        <th>Profile Pic</th>
+                        <th>Profession</th>
+                        <th>Location</th>
+                        <th>Website</th>
+                        <th>Birth Year</th>
+                        <th>Profile URL</th>
+                        <th>Percentage Match</th>
+                    </tr>
+                    {% for key,value in data['Twitter'].items() %} 
+                    <tr>
+                        <td>{{key}}</td>
+                        {% for individualItems in value %}
+                        {% if individualItems is not none and "jpg" in individualItems %}
+                        <td> 
+                            <img src="static/image/twitter/{{ individualItems }}"  width="240" height="180"/>
+                        </td>
+                        {% else %}
+                        <td>{% autoescape false %}{{ individualItems }}{% endautoescape %}</td>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <div id="twitter">No results found :(</div>
+        {% endif %}
+    </div>
+
+    <div class="info">
+        <label for="linkedinres">Linkedin Result:</label>
+        {% if data['LinkedIn'] %}
+        <div id="linkedin">
+            <div class="search-table-outer wrapper" style="overflow-x:auto;">
+                <table>
+                    <tr>
+                        <th>Profile Link</th>
+                        <th>Name</th>
+                        <th>Profile Pic Link</th>
+                        <th>Headline</th>
+                        <th>Country</th>
+                        <th>Role</th>
+                        <th>Company</th>
+                        <th>Duration (Work)</th>
+                        <th>Country (Work)</th>
+                        <th>Education</th>
+                        <th>Qualification</th>
+                        <th>Duration (School)</th>
+                        <th>Additional Link</th>
+                        <th>Phone Number</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Percentage Match</th>
+                    </tr>
+                    {% for key,value in data['LinkedIn'].items() %} 
+                    <tr>
+                        <td>{{key}}</td>
+                        {% for individualItems in value %}
+                        {% if individualItems is not none and "jpg" in individualItems %}
+                        <td> 
+                            <img src="static/image/linkedin/{{ individualItems }}"  width="240" height="180"/>
+                        </td>
+                        {% else %}
+                        <td>{% autoescape false %}{{ individualItems }}{% endautoescape %}</td>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <div id="linkedin">No results found :(</div>
+        {% endif %}
+    </div>
+    <div>
+
+    </div>
+    <hr>
+    <span class="button">
+        <a class="newSearchButton" onclick="deleteData()">New Search...</a>
+    </span>
+    <span class="button">
+        <a class="saveButton" onclick="saveResult()">Save Results...</a>
+    </span>
+    <script src = "https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">    
+        function saveResult() {
+            if (confirm("Proceed to save?"))
+            {
+                var value= {};
+                value.Filename = "{{data['Filename']}}";
+                value.name = "{{data['Name']}}";
+                $.ajax({
+                    url: "{{url_for('saveResult')}}",
+                    data: value,
+                    type: 'POST',
+                    success: function(response){
+                        window.location = "{{url_for('successPage')}}";
+                    },
+                    error: function(error){
+                        alert("Result already saved!");
+                    }
+                });
+            }
+            ;
+        }
+        function deleteData()
+        {
+            if (confirm("New search will delete previous search data, saving data before proceed!"))
+            {
+                var value= {};
+                value.Filename = "{{data['Filename']}}";
+                $.ajax({
+                    url: "{{url_for('deleteData')}}",
+                    data: value,
+                    type: 'POST',
+                    success: function(response){
+                        window.location = "{{url_for('landingPage')}}";
+                    },
+                    error: function(error){
+                        alert("Unexpected error occured :(");
+                    }
+                });
+            }
+            ;
+        }
+    </script>
+</body>
+</html>
