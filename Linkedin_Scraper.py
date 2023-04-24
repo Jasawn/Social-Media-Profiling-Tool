@@ -70,12 +70,12 @@ def LinkedInLogin(driver,filteredLink,searchName):
 
     ## To simulate key strokes and enter the email details
     enterEmail = driver.find_element(By.ID,'session_key')
-    enterEmail.send_keys('smorecat123@gmail.com')
+    enterEmail.send_keys('@gmail.com')
     sleep(5)
 
     ## To simulate key strokes and enter the password
     enterPassword = driver.find_element(By.ID,'session_password')
-    enterPassword.send_keys('P@ssw0rd1234')
+    enterPassword.send_keys('test')
     sleep(5)
 
     ## Locate submit button using XPath
