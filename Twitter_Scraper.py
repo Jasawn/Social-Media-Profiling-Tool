@@ -22,13 +22,13 @@ def twitterLogin(firstname, lastname):
 
     sleep(5)
     username = driver.find_element(By.XPATH, "//input[@type='text']")
-    username.send_keys("averageApe634")
+    username.send_keys("user")
     next_button = driver.find_element(By.XPATH,"//span[contains(text(),'Next')]")
     next_button.click()
 
     sleep(2)
     password = driver.find_element(By.XPATH, "//input[@type='password']")
-    password.send_keys("P@ssw0rd1234")
+    password.send_keys("test")
     log_in = driver.find_element(By.XPATH,"//span[contains(text(),'Log in')]")
     log_in.click()
 
