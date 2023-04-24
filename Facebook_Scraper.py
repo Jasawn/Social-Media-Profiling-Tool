@@ -17,9 +17,9 @@ def login_facebook(driver):
 
     # enter username and password
     username.clear()
-    username.send_keys("smorecat123@gmail.com")
+    username.send_keys("@gmail.com")
     password.clear()
-    password.send_keys("P@ssw0rd1234")
+    password.send_keys("test")
 
     # target the login button and click it
     button = driver.find_element(By.XPATH,"//button[@name='login']")
