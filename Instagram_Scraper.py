@@ -57,12 +57,12 @@ def instagramLogin(driver, filteredLink,username,searchName):
 
     ## To simulate key strokes and enter the email details
     enterEmail = driver.find_element(By.NAME,'username')
-    enterEmail.send_keys('dickbiscuit@live.com')
+    enterEmail.send_keys('@live.com')
     sleep(3)
 
     ## To simulate key strokes and enter the password
     enterPassword = driver.find_element(By.NAME,'password')
-    enterPassword.send_keys('fuckyou123')
+    enterPassword.send_keys('test')
     sleep(3)
 
     ## Locate submit button using XPath
